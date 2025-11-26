@@ -3,7 +3,7 @@ using namespace std;
 #include "dp_knapsack.h"
 
 
-void printDPTable(const vector<vector<int>>& dp, int n, int W) {
+void printKnapsackTable(const vector<vector<int>>& dp, int n, int W) {
     cout << "\nDP Table:\n";
     for (int i = 0; i <= n; i++) {
         for (int w = 0; w <= W; w++) {
@@ -14,25 +14,26 @@ void printDPTable(const vector<vector<int>>& dp, int n, int W) {
 }
 
 
-int knapsack_SpaceMoreOpti(int n, int maxWeight, vector<int> &weights, vector<int> &values){
-    vector<int> prev(maxWeight + 1, 0);
+int knapsack_Tabu(int n, int maxWeight, vector<int> &weights, vector<int> &values){
+    vector<vector<int>> dp(n,vector<int>(maxWeight + 1,0));
     for(int w=weights[0];w<=maxWeight;w++){
-        prev[w] = values[0];
+        dp[0][w] = values[0];
     }
 
     for(int index=1;index<n;index++){
-        for(int wt=maxWeight;wt>=0;wt--){
-            int notTake = 0 + prev[wt];
+        for(int wt=0;wt<=maxWeight;wt++){
+            int notTake = 0 + dp[index-1][wt];
             int take = INT_MIN;
             if(weights[index] <= wt){
-                take = values[index] + prev[wt - weights[index]];
+                take = values[index] + dp[index-1][wt - weights[index]];
             }
-            prev[wt] = max(take,notTake);
+            dp[index][wt] = max(take,notTake);
         }
     }
-    return prev[maxWeight];
+    printKnapsackTable(dp, n, maxWeight);
+    return dp[n-1][maxWeight];
 
-}
+}  
 
 void runKnapsackDemo() {
     int n, maxW;
@@ -48,6 +49,6 @@ void runKnapsackDemo() {
     cout << "Enter knapsack capacity: ";
     cin >> maxW;
 
-    int result = knapsack_SpaceMoreOpti(n,maxW,weights, values);
+    int result = knapsack_Tabu(n,maxW,weights, values);
     cout << "\nMaximum value achievable: " << result << endl;
 }
