@@ -5,6 +5,8 @@ using namespace std;
 #include "algorithms/dp_lcs.h"
 #include "algorithms/greedy_interval.h"
 #include "algorithms/graph_traversal.h"
+#include "utils/benchmark.h"
+
 
 int main() {
     int choice;
@@ -50,6 +52,7 @@ int main() {
 
             case 5:
                 cout << "Benchmarking algorithms...\n";
+                runBenchmarkDemo();
                 break;
 
             case 0:
