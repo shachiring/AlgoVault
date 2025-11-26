@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+#include "dp_knapsack.h"
+
 
 void printDPTable(const vector<vector<int>>& dp, int n, int W) {
     cout << "\nDP Table:\n";

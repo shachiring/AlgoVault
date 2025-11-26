@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "algorithms/dp_knapsack.cpp"
+#include "algorithms/dp_knapsack.h"
 
 int main() {
     int choice;
