@@ -4,6 +4,7 @@ using namespace std;
 #include "algorithms/dp_knapsack.h"
 #include "algorithms/dp_lcs.h"
 #include "algorithms/greedy_interval.h"
+#include "algorithms/graph_traversal.h"
 
 int main() {
     int choice;
@@ -44,6 +45,7 @@ int main() {
 
             case 4:
                 cout << "Running BFS (Graph)...\n";
+                runGraphTraversalDemo();
                 break;
 
             case 5:
