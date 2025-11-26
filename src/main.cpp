@@ -2,6 +2,8 @@
 using namespace std;
 
 #include "algorithms/dp_knapsack.h"
+#include "algorithms/dp_lcs.h"
+#include "algorithms/greedy_interval.h"
 
 int main() {
     int choice;
@@ -32,10 +34,12 @@ int main() {
 
             case 2:
                 cout << "Running LCS (DP)...\n";
+                runLCSDemo();
                 break;
 
             case 3:
                 cout << "Running Interval Scheduling (Greedy)...\n";
+                runGreedyIntervalDemo();
                 break;
 
             case 4:
